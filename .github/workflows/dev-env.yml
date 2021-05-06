@@ -1,22 +1,20 @@
-name: dev-env
-on:
-  push:
-    branches:
-      - dev
-jobs:
-  build:
+  deploy:
+    needs: build
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Login to GitHub Container Registry
-        uses: docker/login-action@v1
+      - name: get-credentials
+        uses: google-github-actions/get-gke-credentials@main
         with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Build and push
-        uses: docker/build-push-action@v2
+          cluster_name: k8s
+          location: asia-southeast1-a
+          credentials: ${{ secrets.GKE_CREDENTIALS }}
+      - name: deploy
+        uses: deliverybot/helm@v1
         with:
-          push: true
-          tags: ghcr.io/pooripro/bookinfo-ratings:dev
+          helm: helm3
+          release: bookinfo-dev-ratings
+          namespace: student[X]-bookinfo-dev
+          chart: k8s/helm
+          value-files: k8s/helm-values/values-bookinfo-dev-ratings.yamlg
