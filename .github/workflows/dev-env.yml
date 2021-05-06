@@ -17,4 +17,4 @@
           release: bookinfo-dev-ratings
           namespace: student75-bookinfo-dev
           chart: k8s/helm
-          value-files: k8s/helm-values/values-bookinfo-dev-ratings.yamlg
+          value-files: k8s/helm-values/values-bookinfo-dev-ratings.yaml
