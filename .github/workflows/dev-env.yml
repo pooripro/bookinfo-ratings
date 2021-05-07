@@ -1,14 +1,133 @@
-name: dev-env
+pooripro
+#6071
+
+ดะดิดัส — 05/05/2021
+http://23.98.77.87/backend/color
+คิตสึเนะจัง — 05/05/2021
+@Ɇαяту
+คิตสึเนะจัง — 05/05/2021
+@Ɇαяту  สัก18.00 มาต่อนะ
+ไอดิส for honor กัน — 05/05/2021
+source ~/.zshrc
+Pro — 05/05/2021
+@*duck เดี๋ยวมา ช่วงเย็นกูนั่งทำ Images ต่อให้เสร็จ
+*duck — 05/05/2021
+
+Ɇαяту — 05/05/2021
+เอออ
+คิตสึเนะจัง — 05/05/2021
+19.30และกันแดกข้าว
+Ɇαяту — 05/05/2021
+ควย
+ส่ง Code มาที่กุเดี๋ยวกุลองเเก้
+Pro — 05/05/2021
+@*duck
+Ɇαяту — 05/05/2021
+SET GLOBAL max_connections = 1500;
+*duck — 05/05/2021
+nginx.conf /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+คิตสึเนะจัง — 05/05/2021
+@Pro
+("\.(?=[^\.]+$)")
+JarNew
+ is here.
+ — 05/05/2021
+Welcome, 
+K Amin
+. We hope you brought pizza.
+ — 05/05/2021
+ดอดเด็มเดอเด้อร์ — 05/05/2021
+spring.jpa.database-platform=org.hibernate.dialect.MySQL5InnoDBDialect
+ดะดิดัส — Yesterday at 1:13 AM
+
+เดิ้ด — Yesterday at 1:16 AM
+
+ดอดเด็มเดอเด้อร์ — Yesterday at 1:56 AM
+https://garticphone.com/en/?c=13265dfef
+Gartic Phone - The Telephone Game
+The online Telephone Game! Play now the popular game for free
+
+ดะดิดัส — Yesterday at 2:39 AM
+https://fb.watch/5iHwDI0ta6/
+Pro — Yesterday at 10:19 AM
+@*duck กินข้าวแปป
+*duck — Yesterday at 10:20 AM
+d^dH0tdbogs,nvodyo
+กูก็จะกินเหมือนกัน
+@กูจะ Smash หน้ามึงไอเด็กเหี้ย
+
+กูจะ Smash หน้ามึงไอเด็กเหี้ย — Yesterday at 10:24 AM
+เดะได้กินตีนกูไอเวง
+Ɇαяту — Yesterday at 10:26 AM
+กินเเต่ตีนมันติดคอ อยากกินเลือดพวกมึงด้วยอ่ะ
+*duck — Yesterday at 10:34 AM
+มึงก็มีของแค่ตัวพรีเมี่ยมอะแหละ
+กระจอก
+Pro — Yesterday at 11:11 AM
+059
+- DevOps, DB, Network, Back-end
+075
+- Front-end, Back-end, DB
+ดอดเด็มเดอเด้อร์ — Yesterday at 11:14 AM
+https://www.youtube.com/watch?v=x5zC0gPBbbI
+YouTube
+Trending Vid
+Drip Cars Meme Compilation (2021)
+
+Ɇαяту — Yesterday at 12:38 PM
+
+nani
+*duck — Yesterday at 1:37 PM
+
+ไอดิส for honor กัน — Yesterday at 1:39 PM
+
+ดะดิดัส — Yesterday at 1:41 PM
+adisus2-plasma
+Pro — Yesterday at 1:55 PM
+@*duck ออกมาจาก รพ. enviroment ครบครันจัด
+ไอดิส for honor กัน — Yesterday at 2:00 PM
+
+*duck — Yesterday at 2:22 PM
+5555
+ไอดิส for honor กัน — Yesterday at 5:12 PM
+docker cp {container_id}:/path/in/container /path/in/host
+docker cp {container_id}:/var/lib/mysql ~/
+Pro — Yesterday at 5:26 PM
+@เดิ้ด
+แด้งค์ — Yesterday at 5:54 PM
+http://sonarqube.bankmarkbenz.xyz/component_measures?id=BackEndService
+Ɇαяту — Yesterday at 8:21 PM
+deploy-non-prd.yml
+ดอดเด็มเดอเด้อร์ — Today at 12:41 AM
+https://github.com/KB-Group-Enterprise/integrated-frontend
+GitHub
+KB-Group-Enterprise/integrated-frontend
+Contribute to KB-Group-Enterprise/integrated-frontend development by creating an account on GitHub.
+
+ดะดิดัส — Today at 1:20 AM
+
+ดอดเด็มเดอเด้อร์ — Today at 1:23 AM
+
+
+Pro — Today at 2:04 PM
+name: deploy-non-prd
 on:
   push:
     branches:
       - dev
-jobs:
-  build:
-    runs-on: ubuntu-20.04
-    steps:
+      - master
+Ɇαяту — Today at 2:08 PM
+
+
+*duck — Today at 2:22 PM
+Error: ENOENT: no such file or directory, open 'k8s/helm-values/values-bookinfo--ratings.yaml'
+value-files: k8s/helm-values/values-bookinfo-${{ env.ENV_NAME }}-ratings.yaml
+แด้งค์ — Today at 2:24 PM
       - name: Checkout code
         uses: actions/checkout@v2
+      - name: Set env
+        run: echo "ENV_NAME=$( [ "$GITHUB_REF" == "refs/heads/master" ] && echo 'uat' || echo ${GITHUB_REF##*/} )" >> $GITHUB_ENV
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v1
         with:
@@ -19,14 +138,15 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ghcr.io/pooripro/bookinfo-ratings:dev
-
+          tags: ghcr.io/bankhubjar/bookinfo_ratings:${{ env.ENV_NAME }}
   deploy:
     needs: build
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+      - name: Set env
+        run: echo "ENV_NAME=$( [ $GITHUB_REF == "refs/heads/master" ] && echo 'uat' || echo ${GITHUB_REF##*/} )" >> $GITHUB_ENV
       - name: get-credentials
         uses: google-github-actions/get-gke-credentials@main
         with:
@@ -37,13 +157,149 @@ jobs:
         uses: deliverybot/helm@v1
         with:
           helm: helm3
-          release: bookinfo-dev-ratings
-          namespace: student75-bookinfo-dev
+          release: bookinfo-${{ env.ENV_NAME }}-ratings
+          namespace: student108-bookinfo-${{ env.ENV_NAME }}
           chart: k8s/helm
-          value-files: k8s/helm-values/values-bookinfo-dev-ratings.yaml
+          value-files: k8s/helm-values/values-bookinfo-${{ env.ENV_NAME }}-ratings.yaml
           values: |
             {
               "extraEnv": {
                 "COMMIT_SHA": "${{ github.sha }}"
               }
             }
+  acceptance_test:
+    needs: deploy
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Set env
+        run: echo "ENV_NAME=$( [ $GITHUB_REF == "refs/heads/master" ] && echo 'uat' || echo ${GITHUB_REF##*/} )" >> $GITHUB_ENV
+      - name: acceptance test
+        run: curl http://bookinfo.${{ env.ENV_NAME }}.opsta.net/student108/ratings/health | grep "Ratings is working" && echo $?
+name: deploy-non-prd
+on:
+  push:
+    branches:
+      - dev
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set env
+        run: echo "ENV_NAME=$( [ "$GITHUB_REF" == "refs/heads/master" ] && echo 'uat' || echo ${GITHUB_REF##*/} )" >> $GITHUB_ENV
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: ghcr.io/bankhubjar/bookinfo_ratings:${{ env.ENV_NAME }}
+  deploy:
+    needs: build
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set env
+        run: echo "ENV_NAME=$( [ $GITHUB_REF == "refs/heads/master" ] && echo 'uat' || echo ${GITHUB_REF##*/} )" >> $GITHUB_ENV
+      - name: get-credentials
+        uses: google-github-actions/get-gke-credentials@main
+        with:
+          cluster_name: k8s
+          location: asia-southeast1-a
+          credentials: ${{ secrets.GKE_CREDENTIALS }}
+      - name: deploy
+        uses: deliverybot/helm@v1
+        with:
+          helm: helm3
+          release: bookinfo-${{ env.ENV_NAME }}-ratings
+          namespace: student108-bookinfo-${{ env.ENV_NAME }}
+          chart: k8s/helm
+          value-files: k8s/helm-values/values-bookinfo-${{ env.ENV_NAME }}-ratings.yaml
+          values: |
+            {
+              "extraEnv": {
+                "COMMIT_SHA": "${{ github.sha }}"
+              }
+            }
+  acceptance_test:
+    needs: deploy
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Set env
+        run: echo "ENV_NAME=$( [ $GITHUB_REF == "refs/heads/master" ] && echo 'uat' || echo ${GITHUB_REF##*/} )" >> $GITHUB_ENV
+      - name: acceptance test
+        run: curl http://bookinfo.${{ env.ENV_NAME }}.opsta.net/student108/ratings/health | grep "Ratings is working" && echo $?
+Collapse
+message.txt
+3 KB
+﻿
+name: deploy-non-prd
+on:
+  push:
+    branches:
+      - dev
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set env
+        run: echo "ENV_NAME=$( [ "$GITHUB_REF" == "refs/heads/master" ] && echo 'uat' || echo ${GITHUB_REF##*/} )" >> $GITHUB_ENV
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: ghcr.io/bankhubjar/bookinfo_ratings:${{ env.ENV_NAME }}
+  deploy:
+    needs: build
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set env
+        run: echo "ENV_NAME=$( [ $GITHUB_REF == "refs/heads/master" ] && echo 'uat' || echo ${GITHUB_REF##*/} )" >> $GITHUB_ENV
+      - name: get-credentials
+        uses: google-github-actions/get-gke-credentials@main
+        with:
+          cluster_name: k8s
+          location: asia-southeast1-a
+          credentials: ${{ secrets.GKE_CREDENTIALS }}
+      - name: deploy
+        uses: deliverybot/helm@v1
+        with:
+          helm: helm3
+          release: bookinfo-${{ env.ENV_NAME }}-ratings
+          namespace: student108-bookinfo-${{ env.ENV_NAME }}
+          chart: k8s/helm
+          value-files: k8s/helm-values/values-bookinfo-${{ env.ENV_NAME }}-ratings.yaml
+          values: |
+            {
+              "extraEnv": {
+                "COMMIT_SHA": "${{ github.sha }}"
+              }
+            }
+  acceptance_test:
+    needs: deploy
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Set env
+        run: echo "ENV_NAME=$( [ $GITHUB_REF == "refs/heads/master" ] && echo 'uat' || echo ${GITHUB_REF##*/} )" >> $GITHUB_ENV
+      - name: acceptance test
+        run: curl http://bookinfo.${{ env.ENV_NAME }}.opsta.net/student108/ratings/health | grep "Ratings is working HA" && echo $?
+message.txt
+3 KB
